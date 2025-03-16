@@ -9,6 +9,10 @@
   },
   "devDependencies": {
     "@types/node": "^22.13.10",
-    "@types/validator": "^13.12.2"
+    "@types/validator": "^13.12.2",
+    "nodemon": "^3.1.9"
+  },
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/index.ts"
   }
 }

@@ -1,0 +1,3 @@
+import MafiaBot from "./"
+
+MafiaBot();
