@@ -13,7 +13,7 @@ export const getRankXpByUser = async (addr: string, chainType: ChainType) => {
 
 export const updateRankXp = async (
   addr: string,
-  rankXp: number,
+  rankXp: number | null,
   chainType: ChainType
 ) => {
   const data = await UserRank.findOne({
@@ -30,7 +30,9 @@ export const updateRankXp = async (
   }
 
   if (data) {
-    data.rankXp = rankXp;
+    if (rankXp) {
+      data.rankXp = rankXp;
+    }
     data.family = familyData?.data.familyInfo.name || "";
     data.worth = userData.data?.worth || 0;
     await data.save();
@@ -38,16 +40,17 @@ export const updateRankXp = async (
   } else {
     if (userData.data) {
       const img = userData.data.imageId || -1;
-      const userRank = await UserRank.create({
+      const user = {
         address: addr,
-        rankXp,
+        rankXp: rankXp ? rankXp : 0,
         img,
         chainType,
         name: userData.data.name,
         gender: userData.data.gender,
         family: familyData?.data.familyInfo.name || "",
         worth: userData.data.worth,
-      });
+      };
+      const userRank = await UserRank.create(user);
       return userRank;
     }
   }

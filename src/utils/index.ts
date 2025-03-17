@@ -25,10 +25,9 @@ export const escapeMarkdownV2 = (text: string) => {
     .join("");
 };
 
-export const toUSDFormat = (number: any, digit = 2) => {
-  if (number)
-    return parseFloat(number).toLocaleString("en-US", {
-      maximumFractionDigits: digit,
-    });
-  return "0";
+export const toUSDFormat = (value: any) => {
+  if (!value) return "";
+  return Math.floor(value)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };

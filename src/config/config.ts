@@ -38,4 +38,16 @@ export const Contract = {
     [ChainType.PLS]: "",
     [ChainType.BNB]: "0xCeA74Da2020C42AbD1f0633ece2C3dcA7c45BC65",
   },
+  CarNick: {
+    [ChainType.PLS]: "",
+    [ChainType.BNB]: "0x0E16b9B89A19C7b70F881c18c80a8934587D6E9F",
+  },
+  Jail: {
+    [ChainType.PLS]: "",
+    [ChainType.BNB]: "0x4376020D730d66222ae22140760599cf1FAd4B45",
+  },
+  Smuggle: {
+    [ChainType.PLS]: "",
+    [ChainType.BNB]: "0xF2ec62776AC62901fE5Ce027bDa8d40eF8f01142",
+  },
 };
