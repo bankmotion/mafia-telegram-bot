@@ -107,7 +107,6 @@ export const scanRankXP = async (
 ) => {
   try {
     const web3 = new Web3(Config.RPCProvider[chain]);
-    bot.telegram.sendMessage(Config.BotChatId[chain], "Hello");
 
     const fromBlock = await getBlockNumberFromName(
       BlockName.RankXPBlock,
