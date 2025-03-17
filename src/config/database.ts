@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize";
 import { Config } from "./config";
 
+console.log({pass: Config.MYSQL.Password})
 const sequelize = new Sequelize(
   Config.MYSQL.Name,
   Config.MYSQL.User,

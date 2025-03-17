@@ -17,6 +17,10 @@ const MafiaBot = () => {
     scanBustOut(ChainType.BNB, bot);
     scanSmuggle(ChainType.BNB, bot);
   }, 60 * 1000);
+  scanRankXP(ChainType.BNB, bot);
+  scanStoleCar(ChainType.BNB, bot);
+  scanBustOut(ChainType.BNB, bot);
+  scanSmuggle(ChainType.BNB, bot);
 
   bot.start((ctx) => {
     ctx.reply("Welcome to the bot!");
