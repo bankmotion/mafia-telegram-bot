@@ -1,3 +1,5 @@
-import MafiaBot from "./"
+import MafiaBot from "./bots/mafia_rank_bot";
 
-MafiaBot();
+const bot = MafiaBot();
+bot.launch();
+console.log("Bot is running now");
