@@ -7,8 +7,8 @@ export const Config = {
   MafiaTGBotToken: process.env.MAFIA_TGBOT_TOKEN || "",
 
   BotChatId: {
-    [ChainType.PLS]: -1002688244422,
-    [ChainType.BNB]: -1002688244422,
+    [ChainType.PLS]: -1001939196872,
+    [ChainType.BNB]: -1002105055432,
   },
 
   RPCProvider: {
