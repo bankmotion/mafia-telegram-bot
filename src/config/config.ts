@@ -3,7 +3,7 @@ import { ChainType } from "../enums/ChainType";
 
 dotenv.config();
 
-export const AllowSendMSG = false;
+export const AllowSendMSG = true;
 
 export const Config = {
   MafiaTGBotToken: process.env.MAFIA_TGBOT_TOKEN || "",
