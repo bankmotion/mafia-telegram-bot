@@ -65,11 +65,15 @@ const getPastEvents = async (
     const addr = event.returnValues.criminal;
     const status = event.returnValues.isSuccess && !event.returnValues.isJailed;
     if (status) {
-      // await sendMessage(bot, addr, chain);
+      await sendMessage(bot, addr, chain);
     }
   }
 
   await updateBlockNumber(BlockName.CrimeBlock, toBlock, chain);
+
+  if (toBlock < to) {
+    await getPastEvents(from + 9001, to, chain, bot);
+  }
 };
 
 const start = async (chain: ChainType, bot: Telegraf<Context<Update>>) => {
