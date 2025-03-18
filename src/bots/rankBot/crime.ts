@@ -65,7 +65,8 @@ const getPastEvents = async (
     const addr = event.returnValues.criminal;
     const status = event.returnValues.isSuccess && !event.returnValues.isJailed;
     if (status) {
-      // await sendMessage(bot, addr, chain);
+      console.log(chain)
+      await sendMessage(bot, addr, chain);
     }
   }
 
