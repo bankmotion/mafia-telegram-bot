@@ -4,7 +4,7 @@ import { Update } from "telegraf/typings/core/types/typegram";
 import { ChainType } from "../../enums/ChainType";
 import UserRank from "../../models/UserRank";
 import { toUSDFormat } from "../../utils";
-import { Config, Contract } from "../../config/config";
+import { AllowSendMSG, Config, Contract } from "../../config/config";
 import { getContract } from "../../utils/contract";
 
 import RankXPABI from "../../abis/RankXP.json";
@@ -80,7 +80,7 @@ const getPastEvents = async (
     if (promotedStatus) {
       const data = await updateRankXp(user, amount, chain);
 
-      if (data && promotedStatus !== RankXPName[0]) {
+      if (data && promotedStatus !== RankXPName[0] && AllowSendMSG) {
         await sendMessage(
           bot,
           data.gender === 0

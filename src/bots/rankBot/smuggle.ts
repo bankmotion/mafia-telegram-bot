@@ -2,7 +2,7 @@ import { Context, Telegraf } from "telegraf";
 import { ChainType } from "../../enums/ChainType";
 import { Update } from "telegraf/typings/core/types/typegram";
 import Web3 from "web3";
-import { Config, Contract } from "../../config/config";
+import { AllowSendMSG, Config, Contract } from "../../config/config";
 import {
   getBlockNumberFromName,
   updateBlockNumber,
@@ -26,7 +26,6 @@ const sendMessage = async (
   const sellerInfo = (
     await axios.get(`${Config.BackendEndpoint[chain]}profile/address/${seller}`)
   ).data;
-  console.log({ cashAmount });
 
   if (sellerInfo) {
     const endpoint = Config.FrontendEndPoint[chain];
@@ -77,7 +76,7 @@ const getPastEvents = async (
       ethers.formatEther(event.returnValues.cashAmount)
     );
     const status = event.returnValues.isSuccess && !event.returnValues.isJailed;
-    if (status && cashAmount) {
+    if (status && cashAmount && AllowSendMSG) {
       await sendMessage(bot, seller, cashAmount, chain, 0);
     }
   }

@@ -2,7 +2,7 @@ import { Context, Telegraf } from "telegraf";
 import { ChainType } from "../../enums/ChainType";
 import { Update } from "telegraf/typings/core/types/typegram";
 import Web3 from "web3";
-import { Config, Contract } from "../../config/config";
+import { AllowSendMSG, Config, Contract } from "../../config/config";
 import {
   getBlockNumberFromName,
   updateBlockNumber,
@@ -68,7 +68,7 @@ const getPastEvents = async (
     const prisoner = event.returnValues.prisoner;
 
     const status = event.returnValues.isSuccess && !event.returnValues.isJailed;
-    if (status) {
+    if (status && AllowSendMSG) {
       await sendMessage(bot, buster, prisoner, chain);
     }
   }
