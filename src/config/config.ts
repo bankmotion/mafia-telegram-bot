@@ -9,6 +9,7 @@ export const Config = {
   BotChatId: {
     [ChainType.PLS]: -1001939196872,
     [ChainType.BNB]: -1002105055432,
+    // -1002688244422
   },
 
   RPCProvider: {

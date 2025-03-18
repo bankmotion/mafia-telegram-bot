@@ -79,14 +79,10 @@ const getPastEvents = async (
         carType: Number(event.returnValues.carType),
         damagePercent: Number(event.returnValues.damagePercent),
       };
-      if (
-        (CarsList[car.carType].basePrice * (100 - car.damagePercent)) / 100 >=
-        30000
-      ) {
-        const userData = await updateRankXp(car.address, null, chain);
-        if (userData) {
-          await sendMessage(bot, car, userData, chain);
-        }
+      
+      const userData = await updateRankXp(car.address, null, chain);
+      if (userData) {
+        await sendMessage(bot, car, userData, chain);
       }
     }
   }
