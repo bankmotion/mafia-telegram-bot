@@ -3,7 +3,10 @@ import { ChainType } from "../../enums/ChainType";
 import { Update } from "telegraf/typings/core/types/typegram";
 import Web3 from "web3";
 import { Config, Contract } from "../../config/config";
-import { getBlockNumberFromName } from "../../services/blockInfoService";
+import {
+  getBlockNumberFromName,
+  updateBlockNumber,
+} from "../../services/blockInfoService";
 import { BlockName } from "../../enums/BlockInfo";
 import { getContract } from "../../utils/contract";
 
@@ -62,9 +65,11 @@ const getPastEvents = async (
     const addr = event.returnValues.criminal;
     const status = event.returnValues.isSuccess && !event.returnValues.isJailed;
     if (status) {
-      await sendMessage(bot, addr, chain);
+      // await sendMessage(bot, addr, chain);
     }
   }
+
+  await updateBlockNumber(BlockName.CrimeBlock, toBlock, chain);
 };
 
 const start = async (chain: ChainType, bot: Telegraf<Context<Update>>) => {
