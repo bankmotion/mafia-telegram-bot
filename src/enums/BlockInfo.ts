@@ -3,4 +3,5 @@ export enum BlockName {
   StoleCarBlock = "StoleCarBlock",
   JailBustOut = "JailBustOut",
   SmuggleBlock = "SmuggleBlock",
+  CrimeBlock = "CrimeBlock",
 }

@@ -4,4 +4,5 @@ export enum EventName {
   BustOutPrisoner = "BustOutPrisoner",
   BoozeSell = "BoozeSell",
   NarcsSell = "NarcsSell",
+  NewCrime = "NewCrime",
 }

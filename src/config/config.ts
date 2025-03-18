@@ -9,7 +9,8 @@ export const Config = {
   BotChatId: {
     [ChainType.PLS]: -1001939196872,
     [ChainType.BNB]: -1002105055432,
-    // -1002688244422
+    // [ChainType.PLS]: -1002688244422,
+    // [ChainType.BNB]: -1002688244422,
   },
 
   RPCProvider: {
@@ -50,5 +51,9 @@ export const Contract = {
   Smuggle: {
     [ChainType.PLS]: "0x9bf722B3350832ae9023B7C9762227bE33943d09",
     [ChainType.BNB]: "0x36b09f1854CF3614Eb8d10fFae847511BB08868e",
+  },
+  Crime: {
+    [ChainType.PLS]: "0xf077d4d0508505c5a80249aFC10bc6Ead90E47F1",
+    [ChainType.BNB]: "0x167ad284C7bcc4d6342991Aa258422E7a04f926E",
   },
 };

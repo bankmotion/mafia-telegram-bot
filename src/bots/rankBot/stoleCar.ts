@@ -79,7 +79,7 @@ const getPastEvents = async (
         carType: Number(event.returnValues.carType),
         damagePercent: Number(event.returnValues.damagePercent),
       };
-      
+
       const userData = await updateRankXp(car.address, null, chain);
       if (userData) {
         await sendMessage(bot, car, userData, chain);
@@ -118,5 +118,5 @@ export const scanStoleCar = async (
 ) => {
   setInterval(() => {
     start(chain, bot);
-  }, 60 * 1000);
+  }, 120 * 1000);
 };
