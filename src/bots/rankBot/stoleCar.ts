@@ -98,23 +98,29 @@ const getPastEvents = async (
   }
 };
 
+const start = async (chain: ChainType, bot: Telegraf<Context<Update>>) => {
+  try {
+    const web3 = new Web3(Config.RPCProvider[chain]);
+
+    const fromBlock = await getBlockNumberFromName(
+      BlockName.StoleCarBlock,
+      chain
+    );
+    if (!fromBlock) return;
+
+    const toBlock = await web3.eth.getBlockNumber();
+
+    await getPastEvents(fromBlock + 1, Number(toBlock), chain, bot);
+  } catch (err) {
+    console.error(`Error in scanStoleCar ${err}`);
+  }
+};
+
 export const scanStoleCar = async (
   chain: ChainType,
   bot: Telegraf<Context<Update>>
 ) => {
-  try {
-  const web3 = new Web3(Config.RPCProvider[chain]);
-
-  const fromBlock = await getBlockNumberFromName(
-    BlockName.StoleCarBlock,
-    chain
-  );
-  if (!fromBlock) return;
-
-  const toBlock = await web3.eth.getBlockNumber();
-
-  await getPastEvents(fromBlock + 1, Number(toBlock), chain, bot);
-  } catch (err) {
-    console.error(`Error in scanStoleCar ${err}`);
-  }
+  setInterval(() => {
+    start(chain, bot);
+  }, 60 * 1000);
 };

@@ -109,10 +109,7 @@ const getPastEvents = async (
   }
 };
 
-export const scanSmuggle = async (
-  chain: ChainType,
-  bot: Telegraf<Context<Update>>
-) => {
+const start = async (chain: ChainType, bot: Telegraf<Context<Update>>) => {
   try {
     const web3 = new Web3(Config.RPCProvider[chain]);
 
@@ -128,4 +125,13 @@ export const scanSmuggle = async (
   } catch (err) {
     console.error(`Error in scanSmuggle`, err);
   }
+};
+
+export const scanSmuggle = async (
+  chain: ChainType,
+  bot: Telegraf<Context<Update>>
+) => {
+  setInterval(() => {
+    start(chain, bot);
+  }, 60 * 1000);
 };
