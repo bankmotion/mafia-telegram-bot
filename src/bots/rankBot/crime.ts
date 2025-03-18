@@ -13,12 +13,13 @@ import { getContract } from "../../utils/contract";
 import crimeABI from "../../abis/Crime.json";
 import { EventName } from "../../enums/EventName";
 import axios from "axios";
-import { menLinksSmall, womenLinksSmall } from "../../const/avatarLinks";
+import { Crimes } from "../../const/crimes";
 
 const sendMessage = async (
   bot: Telegraf<Context<Update>>,
   address: string,
-  chain: ChainType
+  chain: ChainType,
+  crimeType: number
 ) => {
   const userInfo = (
     await axios.get(
@@ -29,13 +30,11 @@ const sendMessage = async (
   const endpoint = Config.FrontendEndPoint[chain];
 
   if (userInfo) {
-    const caption = `New Crime\n\n<a href="${endpoint}profile/${userInfo.name}">${userInfo.name}</a> just made a crime.`;
+    const caption = `New Crime\n\n<a href="${endpoint}profile/${userInfo.name}">${userInfo.name}</a> just successfully <u>${Crimes[crimeType].desc}</u>.`;
 
     await bot.telegram.sendPhoto(
       Config.BotChatId[chain],
-      userInfo.gender === 0
-        ? menLinksSmall[userInfo.imageId]
-        : womenLinksSmall[userInfo.imageId],
+      Crimes[crimeType].img,
       {
         caption,
         parse_mode: "HTML",
@@ -62,10 +61,11 @@ const getPastEvents = async (
 
   for (let index = 0; index < pastEvents.length; index++) {
     const event: any = pastEvents[index];
+    const crimeType = Number(event.returnValues.crimeType);
     const addr = event.returnValues.criminal;
     const status = event.returnValues.isSuccess && !event.returnValues.isJailed;
     if (status && AllowSendMSG) {
-      await sendMessage(bot, addr, chain);
+      await sendMessage(bot, addr, chain, crimeType);
     }
   }
 

@@ -23,7 +23,7 @@ const MafiaBot = () => {
 
   scanSmuggle(ChainType.BNB, bot);
   scanSmuggle(ChainType.PLS, bot);
-  
+
   scanCrime(ChainType.PLS, bot);
   scanCrime(ChainType.BNB, bot);
 
