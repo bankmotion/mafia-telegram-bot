@@ -21,7 +21,8 @@ const sendMessage = async (
   seller: string,
   cashAmount: number,
   chain: ChainType,
-  type: number
+  type: number, // 0: booze, 1: narc
+  exchange: number // 0: buy, 1: sell
 ) => {
   const sellerInfo = (
     await axios.get(`${Config.BackendEndpoint[chain]}profile/address/${seller}`)
@@ -31,7 +32,9 @@ const sendMessage = async (
     const endpoint = Config.FrontendEndPoint[chain];
     const caption =
       (type === 0 ? `Booze smuggle` : `Narcs smuggle`) +
-      `\n\n<a href="${endpoint}profile/${sellerInfo.name}">${sellerInfo.name}</a> sold their ` +
+      `\n\n<a href="${endpoint}profile/${sellerInfo.name}">${
+        sellerInfo.name
+      }</a> ${exchange === 0 ? "bought" : "sold"} ` +
       (type === 0 ? `Booze.` : `Narcotics.`) +
       ` Cash amount: ${toUSDFormat(cashAmount)}`;
     const img =
@@ -61,7 +64,15 @@ const getPastEvents = async (
 
   console.log(`Smuggle past event started from ${from} to ${toBlock}`);
 
-  const boozePastEvents = await smuggleContract.getPastEvents(
+  const boozeBuyPastEvents = await smuggleContract.getPastEvents(
+    EventName.BoozeBuy,
+    {
+      fromBlock: from,
+      toBlock,
+    }
+  );
+
+  const boozeSellPastEvents = await smuggleContract.getPastEvents(
     EventName.BoozeSell,
     {
       fromBlock: from,
@@ -69,19 +80,15 @@ const getPastEvents = async (
     }
   );
 
-  for (let index = 0; index < boozePastEvents.length; index++) {
-    const event: any = boozePastEvents[index];
-    const seller = event.returnValues.seller;
-    const cashAmount = Number(
-      ethers.formatEther(event.returnValues.cashAmount)
-    );
-    const status = event.returnValues.isSuccess && !event.returnValues.isJailed;
-    if (status && cashAmount && AllowSendMSG) {
-      await sendMessage(bot, seller, cashAmount, chain, 0);
+  const narBuyPastEvents = await smuggleContract.getPastEvents(
+    EventName.NarcsBuy,
+    {
+      fromBlock: from,
+      toBlock,
     }
-  }
+  );
 
-  const narPastEvents = await smuggleContract.getPastEvents(
+  const narSellPastEvents = await smuggleContract.getPastEvents(
     EventName.NarcsSell,
     {
       fromBlock: from,
@@ -89,15 +96,51 @@ const getPastEvents = async (
     }
   );
 
-  for (let index = 0; index < narPastEvents.length; index++) {
-    const event: any = narPastEvents[index];
+  for (let index = 0; index < boozeBuyPastEvents.length; index++) {
+    const event: any = boozeBuyPastEvents[index];
+    const buyer = event.returnValues.buyer;
+    const cashAmount = Number(
+      ethers.formatEther(event.returnValues.cashAmount)
+    );
+    const status = event.returnValues.isSuccess && !event.returnValues.isJailed;
+    if (status && cashAmount && AllowSendMSG) {
+      await sendMessage(bot, buyer, cashAmount, chain, 0, 0);
+    }
+  }
+
+  for (let index = 0; index < boozeSellPastEvents.length; index++) {
+    const event: any = boozeSellPastEvents[index];
+    const seller = event.returnValues.seller;
+    const cashAmount = Number(
+      ethers.formatEther(event.returnValues.cashAmount)
+    );
+    const status = event.returnValues.isSuccess && !event.returnValues.isJailed;
+    if (status && cashAmount && AllowSendMSG) {
+      await sendMessage(bot, seller, cashAmount, chain, 0, 1);
+    }
+  }
+
+  for (let index = 0; index < narBuyPastEvents.length; index++) {
+    const event: any = narBuyPastEvents[index];
+    const buyer = event.returnValues.buyer;
+    const cashAmount = Number(
+      ethers.formatEther(event.returnValues.cashAmount)
+    );
+    const status = event.returnValues.isSuccess && !event.returnValues.isJailed;
+    if (status && cashAmount) {
+      await sendMessage(bot, buyer, cashAmount, chain, 1, 0);
+    }
+  }
+
+  for (let index = 0; index < narSellPastEvents.length; index++) {
+    const event: any = narSellPastEvents[index];
     const seller = event.returnValues.seller;
     const cashAmount = Number(
       ethers.formatEther(event.returnValues.cashAmount)
     );
     const status = event.returnValues.isSuccess && !event.returnValues.isJailed;
     if (status && cashAmount) {
-      await sendMessage(bot, seller, cashAmount, chain, 1);
+      await sendMessage(bot, seller, cashAmount, chain, 1, 1);
     }
   }
 
