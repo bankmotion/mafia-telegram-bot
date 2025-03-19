@@ -119,4 +119,5 @@ export const scanStoleCar = async (
   setInterval(() => {
     start(chain, bot);
   }, 120 * 1000);
+  start(chain, bot);
 };

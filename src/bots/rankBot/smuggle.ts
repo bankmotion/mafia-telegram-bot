@@ -176,4 +176,5 @@ export const scanSmuggle = async (
   setInterval(() => {
     start(chain, bot);
   }, 300 * 1000);
+  start(chain, bot);
 };
