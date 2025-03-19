@@ -18,14 +18,14 @@ const MafiaBot = () => {
   scanStoleCar(ChainType.BNB, bot);
   scanStoleCar(ChainType.PLS, bot);
 
-  scanBustOut(ChainType.BNB, bot);
-  scanBustOut(ChainType.PLS, bot);
+  // scanBustOut(ChainType.BNB, bot);
+  // scanBustOut(ChainType.PLS, bot);
 
   scanSmuggle(ChainType.BNB, bot);
   scanSmuggle(ChainType.PLS, bot);
 
-  scanCrime(ChainType.PLS, bot);
-  scanCrime(ChainType.BNB, bot);
+  // scanCrime(ChainType.PLS, bot);
+  // scanCrime(ChainType.BNB, bot);
 
   bot.start((ctx) => {
     ctx.reply("Welcome to the bot!");
