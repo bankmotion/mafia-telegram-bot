@@ -128,6 +128,7 @@ export const scanRankXP = async (
 ) => {
   setInterval(() => {
     start(chain, bot);
-  }, 300 * 1000);
+  }, 120 * 1000);
+  start(chain, bot);
 };
 // End ---> UpdateRankXP
