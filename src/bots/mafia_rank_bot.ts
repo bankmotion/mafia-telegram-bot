@@ -15,8 +15,8 @@ const MafiaBot = () => {
   scanRankXP(ChainType.BNB, bot);
   scanRankXP(ChainType.PLS, bot);
 
-  scanStoleCar(ChainType.BNB, bot);
-  scanStoleCar(ChainType.PLS, bot);
+  // scanStoleCar(ChainType.BNB, bot);
+  // scanStoleCar(ChainType.PLS, bot);
 
   // scanBustOut(ChainType.BNB, bot);
   // scanBustOut(ChainType.PLS, bot);
