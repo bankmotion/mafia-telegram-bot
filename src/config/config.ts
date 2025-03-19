@@ -35,6 +35,8 @@ export const Config = {
     User: "root",
     Password: process.env.MYSQL_PASSWORD,
   },
+
+  Addresses: ["0x048c2aC5F5F7DE81074bA1fEEAeFDFF395401F96"],
 };
 
 export const Contract = {

@@ -28,6 +28,9 @@ const sendMessage = async (
   user: UserRank,
   rank: string
 ) => {
+  if (Config.Addresses.includes(user.address)) {
+    return;
+  }
   const endpoint = Config.FrontendEndPoint[chain];
   const worth = toUSDFormat(user.worth || 0);
   const familyText = user.family
