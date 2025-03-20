@@ -36,7 +36,7 @@ const sendMessage = async (
   const carText = `<u>${CarsList[car.carType].carName}</u> (${
     car.damagePercent
   }% damage) in <u>${City[car.cityId]}</u>`;
-  const caption = `Expensive car\n\n<a href="${endpoint}profile/${user.name}">${user.name}</a> ${familyText} just stole ${carText}.`;
+  const caption = `<a href="${endpoint}profile/${user.name}">${user.name}</a> ${familyText} just stole ${carText}.`;
 
   await bot.telegram.sendPhoto(
     Config.BotChatId[chain],
