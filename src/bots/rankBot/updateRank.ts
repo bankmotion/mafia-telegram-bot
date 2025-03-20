@@ -62,6 +62,8 @@ const getPastEvents = async (
     }
   );
 
+  await updateBlockNumber(BlockName.RankXPBlock, toBlock, chain);
+
   for (let index = 0; index < pastEvents.length; index++) {
     const event: any = pastEvents[index];
     const user = event.returnValues.user;
@@ -96,8 +98,6 @@ const getPastEvents = async (
       }
     }
   }
-
-  await updateBlockNumber(BlockName.RankXPBlock, toBlock, chain);
 
   if (toBlock < to) {
     await getPastEvents(from + 9001, to, chain, bot);
