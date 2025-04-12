@@ -64,6 +64,8 @@ const getPastEvents = async (
 
   console.log(`Smuggle past event started from ${from} to ${toBlock}`);
 
+  await updateBlockNumber(BlockName.SmuggleBlock, toBlock, chain);
+
   const boozeBuyPastEvents = await smuggleContract.getPastEvents(
     EventName.BoozeBuy,
     {
@@ -143,8 +145,6 @@ const getPastEvents = async (
       await sendMessage(bot, seller, cashAmount, chain, 1, 1);
     }
   }
-
-  await updateBlockNumber(BlockName.SmuggleBlock, toBlock, chain);
 
   if (toBlock < to) {
     await getPastEvents(from + 9001, to, chain, bot);
