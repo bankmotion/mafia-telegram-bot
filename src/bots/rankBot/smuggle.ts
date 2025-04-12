@@ -129,7 +129,7 @@ const getPastEvents = async (
       ethers.formatEther(event.returnValues.cashAmount)
     );
     const status = event.returnValues.isSuccess && !event.returnValues.isJailed;
-    if (status && cashAmount) {
+    if (status && cashAmount && AllowSendMSG) {
       await sendMessage(bot, buyer, cashAmount, chain, 1, 0);
     }
   }
@@ -141,7 +141,7 @@ const getPastEvents = async (
       ethers.formatEther(event.returnValues.cashAmount)
     );
     const status = event.returnValues.isSuccess && !event.returnValues.isJailed;
-    if (status && cashAmount) {
+    if (status && cashAmount && AllowSendMSG) {
       await sendMessage(bot, seller, cashAmount, chain, 1, 1);
     }
   }
