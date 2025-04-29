@@ -7,6 +7,7 @@ export const AllowSendMSG = true;
 
 export const Config = {
   MafiaTGBotToken: process.env.MAFIA_TGBOT_TOKEN || "",
+  OnChainBotToken: process.env.ONCHAIN_BOT_TOKEN || "",
 
   BotChatId: {
     [ChainType.PLS]: -1001939196872,
@@ -14,6 +15,7 @@ export const Config = {
     // [ChainType.PLS]: -1002688244422,
     // [ChainType.BNB]: -1002688244422,
   },
+  BotChainGroupID: -1002688074997,
 
   RPCProvider: {
     [ChainType.PLS]: "https://rpc.pulsechain.com",
