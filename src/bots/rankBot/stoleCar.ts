@@ -68,6 +68,8 @@ const getPastEvents = async (
     toBlock,
   });
 
+  await updateBlockNumber(BlockName.StoleCarBlock, toBlock, chain);
+
   for (let index = 0; index < pastEvents.length; index++) {
     const event: any = pastEvents[index];
     const succeed =
@@ -86,8 +88,6 @@ const getPastEvents = async (
       }
     }
   }
-
-  await updateBlockNumber(BlockName.StoleCarBlock, toBlock, chain);
 
   if (toBlock < to) {
     await getPastEvents(from + 9001, to, chain, bot);

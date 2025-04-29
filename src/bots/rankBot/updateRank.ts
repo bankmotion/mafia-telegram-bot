@@ -67,7 +67,8 @@ const getPastEvents = async (
   for (let index = 0; index < pastEvents.length; index++) {
     const event: any = pastEvents[index];
     const user = event.returnValues.user;
-    const amount = Number(event.returnValues.amount);
+    const amount = Number(event.returnValues.amount) / 100;
+    console.log(user, amount, event.transactionHash)
 
     let promotedStatus = "";
 
