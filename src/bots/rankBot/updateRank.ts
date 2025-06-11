@@ -68,7 +68,7 @@ const getPastEvents = async (
     const event: any = pastEvents[index];
     const user = event.returnValues.user;
     const amount = Number(event.returnValues.amount) / 100;
-    console.log(user, amount, event.transactionHash)
+    console.log(user, amount, event.transactionHash);
 
     let promotedStatus = "";
 
@@ -117,7 +117,12 @@ const start = async (chain: ChainType, bot: Telegraf<Context<Update>>) => {
 
     const toBlock = await web3.eth.getBlockNumber();
 
-    await getPastEvents(fromBlock + 1, Number(toBlock), chain, bot);
+    await getPastEvents(
+      Math.max(fromBlock + 1, Number(toBlock) - 9000),
+      Number(toBlock),
+      chain,
+      bot
+    );
   } catch (err) {
     console.error(`Error in scanRankXP ${err}`);
   }

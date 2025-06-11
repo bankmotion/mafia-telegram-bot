@@ -37,8 +37,7 @@ const startScan = async (chain: ChainType, bot: Telegraf<Context>) => {
     if (endBlock[chain] < currentBlock) {
       const plspContract = new web3.eth.Contract(tokenABI, tokenAddress[chain]);
       const events = (await plspContract.getPastEvents("Transfer", {
-        fromBlock:
-          (endBlock[chain] === 0 ? currentBlock : endBlock[chain]),
+        fromBlock: endBlock[chain] === 0 ? currentBlock : endBlock[chain],
         toBlock: currentBlock,
       })) as EventLog[];
 
@@ -82,9 +81,9 @@ const scanTransferToken = (bot: Telegraf<Context>) => {
   setInterval(() => {
     startScan(ChainType.PLS, bot);
     startScan(ChainType.BNB, bot);
-  }, 60 * 1000);
-  startScan(ChainType.PLS, bot);
-  startScan(ChainType.BNB, bot);
+  }, 60 * 5 * 1000);
+  // startScan(ChainType.PLS, bot);
+  // startScan(ChainType.BNB, bot);
 };
 
 const OnChainClaimBot = () => {

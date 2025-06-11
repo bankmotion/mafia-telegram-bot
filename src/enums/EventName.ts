@@ -7,4 +7,6 @@ export enum EventName {
   NewCrime = "NewCrime",
   BoozeBuy = "BoozeBuy",
   NarcsBuy = "NarcsBuy",
+  CratePurchased = "CratePurchased",
+  CreditBought = "CreditBought",
 }

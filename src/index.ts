@@ -1,8 +1,8 @@
 import MafiaBot from "./bots/mafia_rank_bot";
 import OnChainClaimBot from "./bots/onchain_claim_bot";
 try {
-  // const bot = MafiaBot();
-  // bot.launch();
+  const mafiaBot = MafiaBot();
+  mafiaBot.launch();
 
   const bot = OnChainClaimBot();
   bot.launch();

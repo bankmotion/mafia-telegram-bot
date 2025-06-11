@@ -9,6 +9,8 @@ export const Config = {
   MafiaTGBotToken: process.env.MAFIA_TGBOT_TOKEN || "",
   OnChainBotToken: process.env.ONCHAIN_BOT_TOKEN || "",
 
+  CratePurchaseBotToken: process.env.CRATE_BOT_TOKEN || "",
+
   BotChatId: {
     [ChainType.PLS]: -1001939196872,
     [ChainType.BNB]: -1002105055432,
@@ -16,6 +18,8 @@ export const Config = {
     // [ChainType.BNB]: -1002688244422,
   },
   BotChainGroupID: -1002688074997,
+
+  BotCratePurchaseChatID: [6803608888, 1529462326],
 
   RPCProvider: {
     [ChainType.PLS]: "https://rpc.pulsechain.com",
@@ -61,5 +65,13 @@ export const Contract = {
   Crime: {
     [ChainType.PLS]: "0xf077d4d0508505c5a80249aFC10bc6Ead90E47F1",
     [ChainType.BNB]: "0x167ad284C7bcc4d6342991Aa258422E7a04f926E",
+  },
+  CrateMinter: {
+    [ChainType.PLS]: "0x7FE7220E6A8AAB508c60be9d48fEfacDbe6BC179",
+    [ChainType.BNB]: "0x1F4Eb51E87C4e2368316dba8e478Cd561FEb8B77",
+  },
+  HelerCredit: {
+    [ChainType.PLS]: "0x9D2417e5cB35abaae331b32fb262c75A258a0717",
+    [ChainType.BNB]: "0x192F029CC7e0BB80dB201191E0040e8F801df34d",
   },
 };
