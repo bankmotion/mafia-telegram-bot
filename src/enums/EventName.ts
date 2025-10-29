@@ -9,4 +9,5 @@ export enum EventName {
   NarcsBuy = "NarcsBuy",
   CratePurchased = "CratePurchased",
   CreditBought = "CreditBought",
+  PerkBoxesPurchased = "PerkBoxesPurchased",
 }

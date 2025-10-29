@@ -74,4 +74,8 @@ export const Contract = {
     [ChainType.PLS]: "0x9D2417e5cB35abaae331b32fb262c75A258a0717",
     [ChainType.BNB]: "0x192F029CC7e0BB80dB201191E0040e8F801df34d",
   },
+  PerkBoxMinter: {
+    [ChainType.PLS]: "0xF3B4F7d0ec795B555e12BC70150dDb1081FdA403",
+    [ChainType.BNB]: "0x55849c0F5A567A49d219B00642A4648389ada6f6",
+  },
 };

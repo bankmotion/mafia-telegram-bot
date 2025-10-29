@@ -10,6 +10,7 @@ import { scanSmuggle } from "./rankBot/smuggle";
 import { scanCrime } from "./rankBot/crime";
 import { scanCratePurchase } from "./cratePurchase";
 import { scanCreditBought } from "./helperCredit";
+import { scanPerkBoxPurchase } from "./perkbox";
 
 const MafiaBot = () => {
   const bot = new Telegraf(Config.CratePurchaseBotToken);
@@ -23,6 +24,9 @@ const MafiaBot = () => {
 
   scanCreditBought(ChainType.BNB, directBot);
   scanCreditBought(ChainType.PLS, directBot);
+
+  scanPerkBoxPurchase(ChainType.BNB, directBot);
+  scanPerkBoxPurchase(ChainType.PLS, directBot);
 
   // scanStoleCar(ChainType.BNB, bot);
   // scanStoleCar(ChainType.PLS, bot);

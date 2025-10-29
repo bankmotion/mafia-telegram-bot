@@ -6,4 +6,5 @@ export enum BlockName {
   CrimeBlock = "CrimeBlock",
   CratePurchased = "CratePurchased",
   CreditBought = "CreditBought",
+  PerkBoxesPurchased = "PerkBoxesPurchased",
 }
