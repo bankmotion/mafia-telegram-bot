@@ -24,8 +24,8 @@ const tokenName = {
 };
 
 const rating = {
-  [ChainType.PLS]: 100,
-  [ChainType.BNB]: 33,
+  [ChainType.PLS]: 25,
+  [ChainType.BNB]: 8.25,
 };
 
 const startScan = async (chain: ChainType, bot: Telegraf<Context>) => {
